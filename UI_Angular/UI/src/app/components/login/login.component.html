@@ -8,8 +8,10 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
-
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"
+/>
 
 <div class="row">
   <aside class="col-sm-4">
@@ -18,27 +20,28 @@
         <a href="" class="float-right btn btn-outline-primary">Sign up</a>
         <h4 class="card-title mb-4 mt-1">Sign in</h4>
         <form>
-          <div class="form-group">
-            <label>Your email</label>
-            <input
-              name=""
-              class="form-control"
-              placeholder="Email"
-              type="email"
-            />
-          </div>
-          <!-- form-group// -->
-          <div class="form-group">
-            <a class="float-right" href="#">Forgot?</a>
-            <label>Your password</label>
-            <input class="form-control" placeholder="******" type="password" />
-          </div>
-          <!-- form-group// -->
-          <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block">
-              Login
-            </button>
-          </div>
+          <label>Your email</label>
+          <input
+            class="form-control"
+            placeholder="Email"
+            type="email"
+            #userMail
+          />
+          <!-- <a class="float-right" href="#">Forgot?</a> -->
+          <label>Your password</label>
+          <input            
+            class="form-control"
+            placeholder="******"
+            type="password"
+            #userPass
+          />
+          <button
+            type="submit"
+            class="btn btn-primary btn-block"
+            (click)="login(userMail.value, userPass.value)"
+          >
+            Login
+          </button>
           <!-- form-group// -->
         </form>
       </article>
