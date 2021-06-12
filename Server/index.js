@@ -1,7 +1,11 @@
 const PORT = 3000;
-const PATH_TO_DB = 'mongodb://localhost/chat';
+const PATH_TO_DB = 'mongodb://localhost:27017/chat';
 
-const APP = require('express')();
+const JOI = require('joi');
+JOI.objectId = require('joi-objectid')(JOI);
+const USERS = require('./routes/users');
+const EXPRESS = require('express');
+const APP = EXPRESS();
 const SERVER = require('http').createServer(APP);
 const { Server } = require('socket.io');
 const MONGOOSE = require('mongoose');
@@ -15,10 +19,15 @@ IO.on('connection', (socket) => {
     socket.emit('test', 'Test event emitted.');
 });
 
+APP.use(EXPRESS.urlencoded({extended: true})); 
+APP.use(EXPRESS.json());
+
 APP.use((__, response, next) => {
     response.header('Access-Control-Allow-Origin', '*');
     next();
 })
+
+APP.use('/auth/', USERS)
 
 APP.get('/', (__, response) => response.json({ status: 'Up & Running', message: 'Welcome to InstantMessenger.'}));
 
