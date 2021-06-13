@@ -1,11 +1,13 @@
 const PORT = 3000;
-const PATH_TO_DB = 'mongodb://localhost/chat';
+const PATH_TO_DB = 'mongodb://localhost:27017/chat';
 
-const APP = require('express')();
+const EXPRESS = require('express');
+const APP = EXPRESS();
 const SERVER = require('http').createServer(APP);
 const { Server } = require('socket.io');
 const MONGOOSE = require('mongoose');
 const IO = new Server(SERVER);
+const errorHandler = require('./_helpers/error-handler')
 
 const MONGO = MONGOOSE.connect(PATH_TO_DB, { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -14,7 +16,16 @@ IO.on('connection', (socket) => {
 
     socket.emit('test', 'Test event emitted.');
 });
+APP.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+   next();
+  });
 
+APP.use(EXPRESS.urlencoded({extended: true})); 
+APP.use(EXPRESS.json());
+APP.use('/users', require('./users/users.controller'));
+APP.use(errorHandler)
 APP.use((__, response, next) => {
     response.header('Access-Control-Allow-Origin', '*');
     next();
@@ -32,3 +43,4 @@ MONGO.then(() => {
     console.log(error, 'error');
 });
 
+module.exports = MONGO;
