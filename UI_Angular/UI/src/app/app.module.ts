@@ -8,7 +8,7 @@ import { RoutingModule } from './routing.module';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { RegisterComponent } from './register';
 import { AlertComponent } from './_components';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './_components/login/login.component';
 
 @NgModule({
   declarations: [
