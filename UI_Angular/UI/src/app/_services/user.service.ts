@@ -14,13 +14,25 @@ export class UserService {
 
     logIn(name: string, password: string) {
         return this.http.post<any>(environment.url + "/users/login",
-        {
+            {
                 username: name,
                 password: password
-        });
+            });
     }
 
     setSession(authResult) {
         localStorage.setItem('id_token', authResult.token);
+    }
+
+    logout() {
+        localStorage.removeItem("id_token");
+    }
+
+    isLoggedIn() {
+        return !this.isLoggedOut();
+    }
+
+    isLoggedOut() {
+        return localStorage.getItem('id_token') === undefined || localStorage.getItem('id_token') === null;
     }
 }
