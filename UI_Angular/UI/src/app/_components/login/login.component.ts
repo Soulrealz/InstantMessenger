@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/services/userService/user.service';
+import { UserService } from 'src/app/_services';
 import { Router } from "@angular/router"
 
 
@@ -22,8 +22,12 @@ export class LoginComponent implements OnInit {
     if (username === "" || pass === "")
       window.alert("Fill in all fields");
     else {      
-      this.userService.logIn(username, pass)//.subscribe(result => {})
-      //this.router.navigate(['/register']);
+      this.userService.logIn(username, pass).subscribe(result => {
+        if (result.found) {
+          this.userService.setSession(result);
+          this.router.navigateByUrl('/register');
+        }
+      })
     }
   }
 }

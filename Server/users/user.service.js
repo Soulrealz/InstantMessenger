@@ -52,7 +52,6 @@ async function update(username, userParameters){
 
 async function login(username, password) {
     const user = await User.findOne({username: username})
-    const pass = bcrypt.hashSync(password, 10)
     var found = true;
 
     bcrypt.compare(password, user.hashPassword, function(err, result) {
