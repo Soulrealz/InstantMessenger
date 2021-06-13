@@ -20,12 +20,12 @@
         <a href="" class="float-right btn btn-outline-primary">Sign up</a>
         <h4 class="card-title mb-4 mt-1">Sign in</h4>
         <form>
-          <label>Your email</label>
+          <label>Your username</label>
           <input
             class="form-control"
-            placeholder="Email"
-            type="email"
-            #userMail
+            placeholder="username"
+            type="text"
+            #username
           />
           <!-- <a class="float-right" href="#">Forgot?</a> -->
           <label>Your password</label>
@@ -38,7 +38,7 @@
           <button
             type="submit"
             class="btn btn-primary btn-block"
-            (click)="login(userMail.value, userPass.value)"
+            (click)="login(username.value, userPass.value)"
           >
             Login
           </button>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/userService/user.service';
+
 
 @Component({
   selector: 'app-login',
@@ -6,17 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
   }
 
-  userMail: string;
-  userPass: string;
-  login(mail: string, pass: string) {
-    console.log(pass);
-
-    window.alert(mail);
+  login(username: string, pass: string) {
+    username.trim();
+    pass.trim();
+    if (username === "" || pass === "")
+      window.alert("Fill in all fields");
+    else {      
+      this.userService.logIn(username, pass)//.subscribe(result => {})
+    }
   }
 }
