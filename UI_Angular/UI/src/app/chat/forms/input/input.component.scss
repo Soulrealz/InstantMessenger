@@ -1,0 +1,7 @@
+@use '../../../../variables.scss';
+
+div {
+    &.mb-3 {
+        margin: variables.$margin variables.$margin 0 variables.$margin !important;
+    }
+}

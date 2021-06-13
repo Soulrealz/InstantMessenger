@@ -1,0 +1,35 @@
+@use '../../../variables.scss';
+@import '../../../../node_modules/bootstrap';
+
+.author {
+    width: fit-content;
+    font-weight: bold;
+    margin-right: variables.$margin;
+}
+
+.primary-color {
+    color: $primary;
+}
+
+.secondary-color {
+    color: $secondary;
+}
+
+.message-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    width: fit-content;
+    max-width: 50% !important;
+    word-wrap: break-word;
+}
+
+.timestamp {
+    width: fit-content;
+}
+
+.align-end {
+    align-self: flex-end;
+}
