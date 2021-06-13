@@ -36,5 +36,5 @@ function update(req, res, next){
 
 function login(req, res, next) {
     userService.login(req.body.username, req.body.password)
-        .then(() => res.json({}));
+    .then((isSuccess) => res.json({ result: isSuccess.found, username: isSuccess.username, token: isSuccess.token }));
 }

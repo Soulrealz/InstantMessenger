@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs');
 const MONGOOSE = require('mongoose');
 const MONGO = MONGOOSE.connect("mongodb://localhost:27017/chat", { useNewUrlParser: true, useUnifiedTopology: true });
 const User = require('./user.model');
+const jwt = require('jsonwebtoken');
 
 module.exports = {
     getAll,
@@ -42,7 +43,7 @@ async function update(username, userParameters){
         throw 'Username "' + userParameters.username + '" is already taken';
     }
     if (userParameters.password){
-        userParameters.hash = bctypt.hashSYnc(userParameters.password, 10);
+        userParameters.hash = bcrypt.hashSync(userParameters.password, 10);
     }
     Object.assign(user, userParameters);
 
@@ -50,5 +51,18 @@ async function update(username, userParameters){
 }
 
 async function login(username, password) {
-    
+    const user = await User.findOne({username: username})
+    const pass = bcrypt.hashSync(password, 10)
+    var found = true;
+
+    bcrypt.compare(password, user.hashPassword, function(err, result) {
+        found = result;
+    })
+
+    if (!user) throw "User not found";
+    if (!found) throw "Wrong Credentials";
+
+    const token = jwt.sign({id: user.id}, 'scrt', {expiresIn: '1h'})
+    const obj = {found: found, username: user.username, token: token};
+    return obj;
 }

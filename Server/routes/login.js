@@ -9,17 +9,11 @@ router.post("/login", (req, res) => {
     return res.status(400).send(error.details[0].message);
   }
 
-  nickname = req.body.nickname;
+  username = req.body.username;
   password = "";
 
-  bcrypt.hash(req.body.password, 10, function (err, hash) {
-    if (err) {
-      return res.status(500).send({ message: err });
-    } else {
-      password = hash;
-    }
-  });
-  User.findOne({ nickname: nickname, password: password }, function (err, obj) {
+  password = bcrypt.hashSync(req.body.password, 10);
+  User.findOne({ username: username, password: password }, function (err, obj) {
     if (err) {
       return res.status(500).send({ message: err });
     }

@@ -31,8 +31,6 @@ APP.use((__, response, next) => {
     next();
 })
 
-APP.use('/auth/', USERS)
-
 APP.get('/', (__, response) => response.json({ status: 'Up & Running', message: 'Welcome to InstantMessenger.'}));
 
 APP.listen(PORT, () => {
