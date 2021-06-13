@@ -7,6 +7,7 @@ router.post('/register', register);
 router.get('/current', getCurrent);
 router.get('/:nickname', getByUsername);
 router.put('/:nickname', update);
+router.post('/login', login);
 
 
 module.exports = router;
@@ -31,4 +32,9 @@ function update(req, res, next){
     userService.update(req.params.username, req.body)
         .then(() => res.json({}))
         .catch(err => next(err));
+} 
+
+function login(req, res, next) {
+    userService.login(req.body.username, req.body.password)
+        .then(() => res.json({}));
 }

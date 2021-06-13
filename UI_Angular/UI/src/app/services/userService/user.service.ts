@@ -10,7 +10,8 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   logIn(name: string, password: string) {
-    return this.http.post<any>(environment.url + "/login",
+    console.log(123);
+    return this.http.post<any>(environment.url + "/users/login",
       {
         nickname: name,
         password: password

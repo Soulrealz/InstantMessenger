@@ -7,7 +7,8 @@ module.exports = {
     getAll,
     getByUsername,
     create,
-    update
+    update,
+    login
 };
 
 async function getAll(){
@@ -46,4 +47,8 @@ async function update(username, userParameters){
     Object.assign(user, userParameters);
 
     await user.save()
+}
+
+async function login(username, password) {
+    
 }
