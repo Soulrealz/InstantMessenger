@@ -1,8 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { RegisterComponent } from './register';
+import { AuthGuard } from './_helpers';
+
+import { LoginComponent } from './_components/login/login.component';
 
 const ROUTES: Routes = [
-  // Fill out different application routes here  
+  { path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent}
 ];
 
 @NgModule({
