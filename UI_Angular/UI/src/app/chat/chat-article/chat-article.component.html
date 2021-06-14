@@ -1,0 +1,24 @@
+<div class="article-container">
+  <ul class="nav justify-content-end">
+    <li class="nav-item align-self-start">
+      <a class="nav-link active" aria-current="page" href="#">Create Group</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="#">Logout</a>
+    </li>
+  </ul>
+
+  <div class="messages-container" style="padding: 8px 8px 8px 8px;">
+    <ng-template #messageContainer></ng-template>
+  </div>
+
+  <div class="footer">
+    <form (submit)="onSendMessage($event)">
+      <app-input [formControl]="messageControl"></app-input>
+      <button type="submit" class="btn btn-primary btn-sm">
+        Send Message
+        <i class="bi bi-envelope-fill"></i>
+      </button>
+    </form>
+  </div>
+</div>

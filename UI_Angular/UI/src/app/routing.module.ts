@@ -1,12 +1,19 @@
+import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
 
-const ROUTES: Routes = [
-  // Fill out different application routes here  
+import { LoginComponent } from './login';
+import { RegisterComponent } from './register';
+import { ChatComponent } from './chat/chat.component';
+
+const routes: Routes = [
+    { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent },
+    { path: 'chat', component: ChatComponent},
+    { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(ROUTES) ],
+  imports: [ RouterModule.forRoot(routes) ],
   exports: [ RouterModule ]
 })
 export class RoutingModule { }

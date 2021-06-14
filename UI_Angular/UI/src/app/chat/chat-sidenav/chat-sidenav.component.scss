@@ -1,0 +1,21 @@
+@use '../../../variables.scss';
+@import '../../../../node_modules/bootstrap';
+
+.sidenav-container {
+    display: flex;
+}
+
+.sidenav {
+    flex: 1;
+    border-right: 2px solid $primary;
+    height: 100vh;
+}
+
+.article {
+    flex: 5;
+}
+
+.list-group-header {
+    padding-top: variables.$margin;
+    padding-left: variables.$margin;
+}

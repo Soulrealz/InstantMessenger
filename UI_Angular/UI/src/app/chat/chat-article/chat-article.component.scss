@@ -1,0 +1,40 @@
+@use '../../../variables.scss';
+
+.article-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+    max-height: 100vh;
+}
+
+.messages-container {
+    flex: 15;
+    margin: variables.$margin variables.$margin 0 variables.$margin !important;
+    overflow-y: auto;
+}
+
+.footer {
+    flex: 1;
+    margin-top: variables.$margin;
+    margin-bottom: variables.$margin;
+}
+
+form {
+    display: flex;
+
+    & > button {
+        margin-top: variables.$margin;
+        margin-right: variables.$margin;
+    }
+
+    & > app-input {
+        flex: 1
+    }
+}
+
+#input {
+    height: fit-content;
+    margin: variables.$margin variables.$margin variables.$margin variables.$margin !important;
+}
